@@ -6,8 +6,6 @@ import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 import com.squareup.moshi.adapters.PolymorphicJsonAdapterFactory;
 
-import java.io.IOException;
-
 public class Main {
 
     public static void main(String[] args) {
