@@ -28,7 +28,14 @@ public sealed interface LootPredicate {
 
     record BlockStateProperty(@NotNull String block, @Nullable BlockPredicate predicate) implements LootPredicate {}
 
-    record TableBonus() implements LootPredicate {}
+    record TableBonus(
+
+        @Json(name = "enchantment")
+        String enchantment,
+        @Json(name = "chances")
+        List<Double> chances
+
+    ) implements LootPredicate {}
 
     record MatchTool(
 
