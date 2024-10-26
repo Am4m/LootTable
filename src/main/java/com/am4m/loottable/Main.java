@@ -1,9 +1,12 @@
 package com.am4m.loottable;
 
 import com.am4m.loottable.predicate.ItemPredicate;
+import com.am4m.loottable.utils.NumberProvider;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 import com.squareup.moshi.adapters.PolymorphicJsonAdapterFactory;
+
+import java.io.IOException;
 
 public class Main {
 
@@ -26,10 +29,13 @@ public class Main {
                 .withSubtype(LootFunction.Formula.UniformBonusCount.class, "minecraft:uniform_bonus_count")
                 .withSubtype(LootFunction.Formula.BinomialWithBonusCount.class, "minecraft:binomial_with_bonus_count")
                 .withSubtype(LootFunction.Formula.OreDrops.class, "minecraft:ore_drops"))
+            .add(PolymorphicJsonAdapterFactory.of(NumberProvider.class, "type")
+                .withSubtype(NumberProvider.Constant.class, "minecraft:constant")
+                .withSubtype(NumberProvider.Uniform.class, "minecraft:uniform")
+                .withSubtype(NumberProvider.Binomial.class, "minecraft:binomial"))
             .add(ItemPredicate.createJsonAdapterFactory())
             .build();
 
         JsonAdapter<LootTable> adapter = moshi.adapter(LootTable.class);
     }
-
 }
